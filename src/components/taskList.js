@@ -3,15 +3,23 @@ import axios from 'axios';
 import {MaterialReactTable,useMaterialReactTable} from 'material-react-table';
 import './taskList.css';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+
 
 const TaskList = () => {
 const [tasks, setTasks] = useState([]);
 const [assignmentDate, setAssignmentDate] = useState('');
 
 useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
     const fetchTasks = async () => {
     try {
-    const response = await axios.get('http://localhost:8000/getTasks');
+        const config = {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        };
+    const response = await axios.get('http://localhost:8000/api/getTasks', config);
     const formattedTasks = response.data.map(task => ({...task, startDate: moment(task.startDate).format('DD-MM-YYYY HH:mm:ss')}));
     setTasks(formattedTasks);
     } catch (error) {
@@ -66,6 +74,12 @@ useEffect(() => {
     const handleAssignTasks = async () => {
         try {
             const authToken = localStorage.getItem('authToken');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            };
+
             if (!authToken) {
                 console.error('Authentication token not available.');
                 return;
@@ -80,7 +94,7 @@ useEffect(() => {
                 }
             );
             console.log(response.data);
-            const updatedResponse = await axios.get('http://localhost:8000/getTasks');
+            const updatedResponse = await axios.get('http://localhost:8000/api/getTasks', config);
             setTasks(updatedResponse.data);
         } catch (error) {
             console.error('Error assigning tasks:', error);
@@ -100,6 +114,9 @@ useEffect(() => {
             </label>
         </div>
         <MaterialReactTable table={table} />
+        <Link to="/upload-excel">
+        <button style={{ width: '200px', marginTop: '20px' }}>Upload Excel</button>
+      </Link>
         </div>
         )
 };
