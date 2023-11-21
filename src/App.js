@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TaskList from './components/taskList';
-import Profile from './components/profile';
-import NavBar from './components/navbar';
+import TaskList from './components/pages/taskList';
+import Profile from './components/pages/profile';
+import NavBar from './components/navbar/navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-import Login from './components/login';
-import UserList from './components/userList';
-import ExcelUpload from './components/excelUpload';
+import Login from './components/login/login';
+import UserList from './components/pages/userList';
+import ExcelUpload from './components/pages/excelUpload';
 
 const App = () => {
   return (

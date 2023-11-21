@@ -41,13 +41,13 @@ function UserList() {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem', alignItems: 'center', justifyContent: 'space-around'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', margin: '2rem', alignItems: 'center', justifyContent: 'space-around'  }}>
         <h2>User List</h2>
         <ul className="user-list">
             {users.map((user) => (
                 <li key={user.id} className="user-item">
                     {user.username}{' '}
-                    <button onClick={() => handleUserSelect(user.id)}>View Profile</button>
+                    <button className="userButon" onClick={() => handleUserSelect(user.id)}>View Profile</button>
                 </li>
             ))}
         </ul>

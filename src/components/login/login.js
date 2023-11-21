@@ -30,18 +30,20 @@ export default function Login() {
     };
 
     return (
+        <div className="login-container">
         <form onSubmit={handleSubmit}>
         <label>
             <p>Username</p>
-            <input type="text" name="username"  value={formData.username}  onChange={handleChange}  />
+            <input className='loginInput' type="text" name="username"  value={formData.username}  onChange={handleChange}  />
         </label>
         <label>
             <p>Password</p>
-            <input  type="password"  name="password" value={formData.password} onChange={handleChange} />
+            <input  className="loginInput" type="password"  name="password" value={formData.password} onChange={handleChange} />
         </label>
         <div>
-            <button type="submit">Submit</button>
+            <button className="loginButon" type="submit">Submit</button>
         </div>
         </form>
+        </div>
     );
 }
